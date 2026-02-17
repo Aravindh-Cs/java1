@@ -8,22 +8,21 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/Aravindh-Cs/java1.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 bat 'mvn clean package'
             }
         }
 
+        stage('Run Java') {
+            steps {
+                bat 'java -cp target/classes HelloWorld'
+            }
+        }
+
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'target\\*.jar'
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
     }
