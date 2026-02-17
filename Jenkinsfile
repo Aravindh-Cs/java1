@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Java') {
             steps {
-                bat 'java -cp target/classes HelloWorld'
+                bat 'java -cp target/classes index'
             }
         }
 
